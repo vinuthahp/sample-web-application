@@ -39,6 +39,8 @@ pipeline{
                     
                 
                 docker push vinutha25/new:$Docker_tag
+				      
+			      }
 		'''
                 
                 
