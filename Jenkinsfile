@@ -13,7 +13,7 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') {
-				sh "mvn -X sonar:sonar"
+				sh "mvn clean verify sonar:sonar"
 			      //sh "mvn sonar:sonar"
 			      
                        	     	}
