@@ -14,6 +14,7 @@ pipeline{
                       script{
 			      withSonarQubeEnv('sonarserver') {
 				sh "java -version"
+				sh "mvn clean"
 				sh "mvn sonar:sonar"
 			   
 			      
