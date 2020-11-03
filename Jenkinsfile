@@ -33,8 +33,10 @@ pipeline{
 		      steps {
 			      script{
                 sh 'docker build . -t vinutha25/new:$Docker_tag'
-          
-                sh 'docker push vinutha25/new:$Docker_tag'
+                sh ''' docker login -u vinutha25 -p pa**word123
+                'docker push vinutha25/new:$Docker_tag'
+		...
+				      
 			      }
 		
 			      }
