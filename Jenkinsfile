@@ -15,7 +15,7 @@ pipeline{
 			      withSonarQubeEnv('sonarserver') {
 				      sh "java -version"
 				sh "mvn clean verify sonar:sonar"
-			      //sh "mvn sonar:sonar"
+			   
 			      
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
