@@ -35,6 +35,7 @@ pipeline{
                 sh 'docker build . -t vinutha25/new:$Docker_tag'
           
                 docker push vinutha25/new:$Docker_tag
+			      }
 		
 			      }
 			      
