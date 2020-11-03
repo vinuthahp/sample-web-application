@@ -37,7 +37,7 @@ pipeline{
     
                }
                     
-                sh '''docker login -u vinutha25 -p $docker_password
+                
                 docker push vinutha25/new:$Docker_tag
 		'''
                 }
