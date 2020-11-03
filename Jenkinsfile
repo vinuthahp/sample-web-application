@@ -36,8 +36,9 @@ pipeline{
 		      steps {
 			      script{
                 sh 'docker build . -t vinutha25/new:$Docker_tag'
-                withCredentials([usernamePassword(credentialsId: 'ee717238-750c-4f3e-8ac5-fcf90baa881b', passwordVariable: 'dockerps', usernameVariable: 'docker')]) {
-    // some block
+                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: '', usernameVariable: '')]) {
+    
+               }
                     
                 sh '''docker login -u vinutha25 -p $docker_password
                 docker push vinutha25/new:$Docker_tag
