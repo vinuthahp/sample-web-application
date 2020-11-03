@@ -3,11 +3,12 @@ def getDockerTag() {
  return tag
 }
 pipeline{
-
-      agent any
-      environment {
-          Docker_tag = getDockerTag()
-      }
+     agent {
+                docker {
+                image 'maven:3.6.3-openjdk-8'
+                args '-v $HOME/.m2:/root/.m2'
+                }
+            }
         
         stages{
 
@@ -15,6 +16,8 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
+			      sh "java -version"
+			      sh "mvn clean"
 			      sh "mvn sonar:sonar"
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
