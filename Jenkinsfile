@@ -33,11 +33,7 @@ pipeline{
 		      steps {
 			      script{
                 sh 'docker build . -t vinutha25/new:$Docker_tag'
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: '', usernameVariable: '')]) {
-    
-               }
-                    
-                
+          
                 docker push vinutha25/new:$Docker_tag
 		
 			      }
