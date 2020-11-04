@@ -1,5 +1,4 @@
 currentBuild.displayName = "Final_Demo # "+currentBuild.number
-
 def getDockerTag() {
  def tag = sh script: 'git rev-parse HEAD', returnStdout: true 
  return tag
@@ -44,10 +43,6 @@ pipeline{
 			      
 		
                 }
-		
-		
-		
-		}
 		stage('ansible playbook'){
 			steps{
 			 	script{
@@ -56,13 +51,12 @@ pipeline{
 				     sed -i "s/docker_tag/$final_tag/g"  deployment.yaml
 				     '''
 				    ansiblePlaybook become: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible.yaml'
-			      //ansiblePlaybook become: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible.yaml'
-				//ansiblePlaybook become: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible.yaml', sudo: true	
 				}
 			}
-		
+		}
 		      }
 }
               
 		
              	     	         
+
