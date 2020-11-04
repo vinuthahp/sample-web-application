@@ -1,61 +1,39 @@
 currentBuild.displayName = "Final_Demo # "+currentBuild.number
 
-   def getDockerTag(){
-        def tag = sh script: 'git rev-parse HEAD', returnStdout: true
-        return tag
-        }
-        
+   pipeline{
 
-pipeline{
-        agent any  
-        environment{
-	    Docker_tag = getDockerTag()
-        }
-        
-        stages{
-
-
-              stage('Quality Gate Statuc Check'){
-
-               agent {
+      agent {
                 docker {
-                image 'maven'
+                image 'maven:3.6.3-openjdk-8'
                 args '-v $HOME/.m2:/root/.m2'
                 }
             }
+        
+        stages{
+
+              stage('Quality Gate Status Check'){
                   steps{
                       script{
-                      withSonarQubeEnv('sonarserver') { 
-                      sh "mvn sonar:sonar"
-                       }
-                      timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate()
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                      }
-                    }
-		    sh "mvn clean install"
-                  }
-                }  
-              }
-
-
-
-              stage('build')
-                {
-              steps{
-                  script{
-		 sh 'cp -r ../devops-training@2/target .'
-                   sh 'docker build . -t deekshithsn/devops-training:$Docker_tag'
-		   withCredentials([string(credentialsId: 'docker_password', variable: 'docker_password')]) {
-				    
-				  sh 'docker login -u deekshithsn -p $docker_password'
-				  sh 'docker push deekshithsn/devops-training:$Docker_tag'
-			}
-                       }
-                    }
-                 }
-		 
+			      withSonarQubeEnv('sonarserver') {
+				sh "java -version"
+				sh "mvn clean"
+				sh "mvn sonar:sonar"
+			   
+			      
+                       	     	}
+			      timeout(time: 1, unit: 'HOURS') {
+			      def qg = waitForQualityGate()
+				      if (qg.status != 'OK') {
+					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				      }
+                    		}
+		    	    sh "mvn clean install"
+		  
+                 	}
+               	 }  
+              }	
+		
+            }	       	     	         
 		stage('ansible playbook'){
 			steps{
 			 	script{
