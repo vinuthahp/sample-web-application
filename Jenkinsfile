@@ -42,7 +42,12 @@ pipeline{
 			      
 		
                 }
-                
+		stage("Deployment to Kubernetes"){
+			kubernetesDeploy(
+				configs: 'deployment.yaml', 
+				kubeconfigId: 'k8s1',
+				enableConfigSubstitution: true
+					)
 			      }
 		      }
               
