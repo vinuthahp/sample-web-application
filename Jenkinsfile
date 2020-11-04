@@ -44,6 +44,17 @@ pipeline{
 			      
 		
                 }
+		
+		
+		stage('login'){
+			steps{
+			 	script{
+				    sh ''' ssh root@3.227.239.56
+				     
+				     '''
+				}
+			}
+		}
 		stage('ansible playbook'){
 			steps{
 			 	script{
