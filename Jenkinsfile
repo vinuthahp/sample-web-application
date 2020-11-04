@@ -46,8 +46,8 @@ pipeline{
 			steps {
 				script {
 				withCredentials([kubeconfigContent(credentialsId: 'k8s1', variable: 'KUBECONFIG_CONTENT')]) {
-                                    sh ''' sudo kubectl apply -f deployment.yaml --kubeconfig="${k8s1}"
-                                    sudo kubectl get all -o wide --kubeconfig="${k8s1}"
+                                    sh '''  kubectl apply -f deployment.yaml --kubeconfig="${k8s1}"
+                                    kubectl get all -o wide --kubeconfig="${k8s1}"
                                     '''
 
 					
