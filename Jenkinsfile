@@ -45,7 +45,13 @@ pipeline{
 		stage('Deployment to Kubernetes'){
 			steps {
 				script {
-				kubernetesDeploy configs: 'deployment.yaml', enableConfigSubstitution: true,  kubeconfigId: 'k8s1'	
+				withCredentials([kubeconfigContent(credentialsId: 'k8s1', variable: 'KUBECONFIG_CONTENT')]) {
+                                    sh ''' sudo kubectl apply -f deployment.yaml --kubeconfig="${k8s1}"
+                                    sudo kubectl get all -o wide --kubeconfig="${k8s1}"
+                                    '''
+
+					
+}	
 				}
 				
 			}
