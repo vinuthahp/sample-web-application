@@ -1,4 +1,5 @@
 - hosts: test
+  gather_facts: yes
   tasks:
   - name: copy deployment file to kubernetes master 
     copy:
