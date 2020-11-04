@@ -49,9 +49,12 @@ pipeline{
 		stage('login'){
 			steps{
 			 	script{
-				    sh ''' ssh -tt root@3.227.239.56
+					withCredentials([sshUserPrivateKey(credentialsId: 'master', keyFileVariable: 'master', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
+    sh ''' ssh  ubuntu@3.227.239.56
 				     
 				     '''
+}
+				    
 				}
 			}
 		}
