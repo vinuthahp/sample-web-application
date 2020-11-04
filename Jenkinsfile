@@ -46,17 +46,7 @@ pipeline{
                 }
 		
 		
-		stage('login'){
-			steps{
-			 	script{
-					withCredentials([sshUserPrivateKey(credentialsId: 'master', keyFileVariable: 'master', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
-    sh ''' ssh  ubuntu@3.227.239.56
-				     
-				     '''
-}
-				    
-				}
-			}
+		
 		}
 		stage('ansible playbook'){
 			steps{
