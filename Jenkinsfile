@@ -33,7 +33,7 @@ currentBuild.displayName = "Final_Demo # "+currentBuild.number
                	 }  
               }	
 		
-            }	       	     	         
+            	     	         
 		stage('ansible playbook'){
 			steps{
 			 	script{
@@ -51,7 +51,7 @@ currentBuild.displayName = "Final_Demo # "+currentBuild.number
                }
 	       
 	       
-	       
+   }       
 	      
     
 
