@@ -4,15 +4,13 @@ def getDockerTag() {
  return tag
 }
 pipeline{
-     agent none
+     agent any
 	environment {
           Docker_tag = getDockerTag()
 	}
 	
         stages{
-
               stage('Quality Gate Status Check'){
-		      agent any
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
@@ -32,7 +30,6 @@ pipeline{
               }	
 
               stage('build'){
-		      agent any
 		      steps {
 			      script{
                 sh 'docker build . -t vinutha25/new:$Docker_tag'
@@ -46,7 +43,6 @@ pipeline{
 		
                 }
 		stage('Approval'){
-			agent none
 			steps{
 				script{
 					input message: 'deploying to prod'
@@ -54,7 +50,6 @@ pipeline{
 			}
 		}
 		stage('ansible playbook'){
-			agent any
 			steps{
 			 	script{
 				    sh '''final_tag=$(echo $Docker_tag | tr -d ' ')
