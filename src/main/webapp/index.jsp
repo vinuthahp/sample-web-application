@@ -51,7 +51,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Hello</h1>
-        <p>This is your page!! Welcome  </p>
+        <p>This is from Dev Environment </p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Jenkins</h2>
-            <p>Jenkins is a free and open source automation server and Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery</p>
+            <p>Jenkins is a free and open source automation server. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery</p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
